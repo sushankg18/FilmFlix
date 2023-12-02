@@ -6,12 +6,13 @@ import Hollywood from "./component/Hollywood";
 import Anime from "./component/Anime";
 import Imdb from "./component/Imdb";
 import Category from "./component/Category";
-
+import Home from "./component/Home";
 function App() {
   return (
     <Router>
       <Navbar />
       <Routes>
+        <Route path={"/"} element={<Home />} />
         <Route path={"/Bollywood"} element={<Bollywood />} />
         <Route path={"/Hollywood"} element={<Hollywood />} />
         <Route path={"/animeMovies"} element={<Anime />} />

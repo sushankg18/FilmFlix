@@ -18,7 +18,7 @@ const Navbar = () => {
                 <Link to={'/'}>
                     <Image cursor={'pointer'} src={logo} w={'120px'} />
                 </Link>
-                <HStack fontSize={'large'} fontFamily={'Outfit'} >
+                <HStack fontSize={'large'}  >
                     <Link to={'/Bollywood'} style={{ ...styles, paddingLeft: '20px' }}>
                         <Text>
                             Bollywood
@@ -30,8 +30,8 @@ const Navbar = () => {
                     <Link to={'/animeMovies'} style={{ ...styles, paddingLeft: '20px' }}>Anime</Link>
                 </HStack>
                 <HStack background={'#444444'} width={'15rem'} p={'8'}>
-                    <Input placeholder='Search...' border={'none'} w={'100%'} background={'transparent'} />
-                    <IoIosSearch color='white' fontSize={'1.3rem'}/>
+                    <Input placeholder={'Search...'} fontSize={'1.1rem'} color={'white'} outline={'none'} border={'none'} h={'100%'} w={'100%'} background={'transparent'} />
+                    <IoIosSearch color='white' fontSize={'1.3rem'} cursor={'pointer'}/>
                 </HStack>
             </HStack>
         </Container>
