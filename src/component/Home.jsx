@@ -1,9 +1,25 @@
-import { Box, Button, Container, Flex, HStack, Heading, Image, Input, Text, VStack } from '@chakra-ui/react'
-import React from 'react'
+import { Box, Button,  Flex, HStack, Heading, Image, Input, Text, VStack } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
 import Poster from '../Assets/BgPhoto.png'
+import axios from 'axios'
 const Home = () => {
+    const URL = 'https://api.themoviedb.org/3/'
+    const API_KEY = 'd681c01f015037ca82d79554a162039e'
+    const [movies, setMovies] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${URL}discover/movie?api_key=${API_KEY}`)
+                setMovies(response.data.results)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchData();
+    }, [])
     return (
-        <VStack height={'89vh'} py={'10'}>
+        <VStack height={'fit-content'} py={'4'} gap={'4'}>
 
             // MAIN HOME PAGE BG ---
             <Flex w={'80vw'} height={'40vh'} position={'relative'}>
@@ -15,23 +31,57 @@ const Home = () => {
                         <Heading color={'white'} fontSize={'2.2rem'} opacity={'1'}>WELCOME.</Heading>
                         <Heading color={'white'} fontSize={'2rem'} opacity={'1'}>Millions of movies, TV shows and people to discover. Explore now.</Heading>
                     </Flex>
-                    <HStack w={'100%'} gap={'0'} bgColor={'white'} border={'1px solid white'} borderRadius={'20'} height={'40'} >
-                        <Input pl={'20'} fontSize={'1.1rem'} placeholder={'Search for a Movie, Webseries, Tv shows'} outline={'none'} border={'none'} height={'100%'} background={'transparent'} w={'100%'} />
-                        <Button cursor={'pointer'} color={'white'} fontWeight={'bold'} fontSize={'1.1rem'} height={'100%'} bgColor={'teal'} variant={'ghost'} border={'none'} px={'30'} borderRadius={'20'}>Search</Button>
+
+                    <HStack
+                        width={'full'}
+                        h={'8'}
+                    >
+                        <Input
+                            placeholder={'Search for a Movie, Webseries, Tv shows'}
+                            fontSize={'1.1rem'}
+                            color={'#333'}
+                            outline={'none'}
+                            h={'8'}
+                            w={'100%'}
+                            background={'white'}
+                            _placeholder={{ color: '#888' }}
+                            variant='unstyled'
+                            pl={'8'}
+                        />
+                        <Button
+                            cursor={'pointer'}
+                            color={'black'}
+                            fontSize={'1rem'}
+                            height={'100%'}
+                            bgColor={'#fff'}
+                            p={'2'}
+                        >
+                            Search
+                        </Button>
                     </HStack>
                 </Flex>
             </Flex>
             // MAIN HOME PAGE BG ---
 
-
-            {/* <Box >
-                <Image borderRadius={'10'} w={'1'} src={'https://www.themoviedb.org/t/p/w220_and_h330_face/f2YbkFMN27uqAWqmWZmfj3CE1tF.jpg'} />
-                <Text>The Shepherd</Text>
-                <Text>21 Aug 2023</Text>
-            </Box> */}
-
+            <HStack w={'80vw'} justifyContent={'space-between'} gap={'8'} flexWrap={'wrap'} >
+                {
+                    movies.map((i) => (
+                            <Box cursor={'pointer'} w={'40'}>
+                                <Image
+                                    src={`https://image.tmdb.org/t/p/w500${i.poster_path}`}
+                                    alt={i.original_title}
+                                    width={'full'}
+                                    borderRadius={'10'}
+                                />
+                                <Text noOfLines={'1'} fontWeight={'bold'} fontSize={'1.1rem'}>{i.original_title}</Text>
+                                <Text fontWeight={'semibold'}>{i.release_date}</Text>
+                            </Box>
+                    ))
+                }
+            </HStack>
         </VStack>
     )
 }
 
 export default Home
+

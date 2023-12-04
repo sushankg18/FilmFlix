@@ -7,6 +7,7 @@ import Anime from "./component/Anime";
 import Imdb from "./component/Imdb";
 import Category from "./component/Category";
 import Home from "./component/Home";
+import Footer from './component/Footer'
 function App() {
   return (
     <Router>
@@ -19,6 +20,7 @@ function App() {
         <Route path={"/topImdb"} element={<Imdb />} />
         <Route path={"/Category"} element={<Category />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }
