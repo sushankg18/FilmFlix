@@ -27,7 +27,7 @@ const Home = () => {
 
     return (
         <VStack height={'fit-content'} py={'4'} gap={'4'}>
-            {/* MAIN HOME PAGE BG */}
+            /* MAIN HOME PAGE BG */
             <Flex w={'80vw'} height={'40vh'} position={'relative'} >
                 <Image src={Poster} objectFit={'cover'} w={'100%'} height={'100%'} userSelect={'none'} />
                 <Box w={'100%'} height={'100%'} position={'absolute'} zIndex={'9'} bgColor={'#000'} opacity={'.6'}></Box>
